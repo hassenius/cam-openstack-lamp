@@ -21,5 +21,12 @@ resource "openstack_compute_instance_v2" "frontend" {
         name = "${local.network_name}"
     }
 
-    #personality
+    user_data = <<-EOF
+      #!/bin/bash
+      apt-get update
+      apt-get --assume-yes install nginx
+      systemctl enable nginx
+      systemctl start nginx
+      EOF
+
 }
