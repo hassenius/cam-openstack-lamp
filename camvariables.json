@@ -1,0 +1,138 @@
+{
+  "template_input_params": [
+    {
+      "name": "external_net_id",
+      "description": "Specify details if creating new network.",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "external_net_id",
+      "hidden": false,
+      "immutable": false,
+      "options": [
+        {
+          "value": "",
+          "label": "None",
+          "default": "true"
+        },
+        {
+          "value": "1f4e37bf-95d7-46a9-ab92-c7c02eb339f0",
+          "label": "provider-ext"
+        }
+      ],
+      "default": ""
+    },
+    {
+      "name": "floating_pool",
+      "description": "Name of the floating address pool to assign floating addresses from. Leave blank if using provider network which doesn't require floating ip.",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "floating_pool",
+      "hidden": false,
+      "immutable": false,
+      "options": [
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "provider-ext",
+          "label": "provider-ext",
+          "default": "true"
+        }
+      ],
+      "default": "provider-ext"
+    },
+    {
+      "name": "frontend_flavor",
+      "description": "Specify instance flavor to provision front end server to",
+      "options": [
+        {
+          "value": "m1.nano",
+          "label": "m1.nano"
+        },
+        {
+          "value": "m1.small",
+          "label": "m1.small",
+          "default": "true"
+        },
+        {
+          "value": "m1.medium",
+          "label": "m1.medium"
+        },
+        {
+          "value": "m1.large",
+          "label": "m1.large"
+        }
+      ]
+      "default": "m1.small",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "frontend_flavor",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "image_name",
+      "description": "Specify the name of the image to deploy instances from",
+      "default": "Ubuntu_16.04-server",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "image_name",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "instance_name",
+      "description": "Name of the deployment. Will be included in instance names",
+      "default": "camdemo",
+      "type": "string",
+      "required": true,
+      "secured": false,
+      "label": "instance_name",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "keypair_name",
+      "description": "Name of keypair to add to instance for admin use. Optional",
+      "default": "",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "keypair_name",
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "network_name",
+      "description": "The name of the network to deploy to. Leave blank to create a new network.",
+      "default": "",
+      "type": "string",
+      "required": false,
+      "secured": false,
+      "label": "network_name",
+      "hidden": false,
+      "immutable": false
+    }
+  ],
+  "template_output_params": [
+    {
+      "name": "access_ip",
+      "label": "access_ip",
+      "description": "",
+      "secured": false,
+      "hidden": false
+    },{
+      "name": "frontend_url",
+      "label": "frontend_url",
+      "description": "",
+      "secured": false,
+      "hidden": false
+    }
+
+  ]
+}
