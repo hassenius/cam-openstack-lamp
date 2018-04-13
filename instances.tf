@@ -21,6 +21,8 @@ resource "openstack_compute_instance_v2" "frontend" {
         name = "${local.network_name}"
     }
 
+    security_groups = ["default", "${openstack_networking_secgroup_v2.frontend.name}"]
+
     user_data = <<-EOF
       #!/bin/bash
       apt-get update
