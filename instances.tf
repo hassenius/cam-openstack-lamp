@@ -4,7 +4,7 @@
 ## if not use the one we created.
 ###########################################
 locals {
-  network_name = "${coalesce(var.network_name, element(concat(openstack_networking_network_v2.newnetwork.*.name, list("")), 1))}"
+  network_name = "${coalesce(var.network_name, element(concat(openstack_networking_network_v2.newnetwork.*.name, list("")), 0))}"
 }
 
 ##################################
@@ -21,4 +21,5 @@ resource "openstack_compute_instance_v2" "frontend" {
         name = "${local.network_name}"
     }
 
+    #personality
 }

@@ -9,13 +9,17 @@
 #
 resource "openstack_compute_floatingip_v2" "frontend_vip" {
   count = "${var.floating_pool != "" ? 1 : 0}"
+  depends_on = ["openstack_networking_router_v2.newrouter", "openstack_networking_subnet_v2.newsubnet"]
   pool = "${var.floating_pool}"
+  region = "RegionOne"
 }
 
 resource "openstack_compute_floatingip_associate_v2" "frontend_vip" {
   count       = "${var.floating_pool != "" ? 1 : 0}"
+  depends_on = ["openstack_networking_router_v2.newrouter", "openstack_networking_subnet_v2.newsubnet"]
   floating_ip = "${openstack_compute_floatingip_v2.frontend_vip.address}"
   instance_id = "${openstack_compute_instance_v2.frontend.0.id}"
+  region = "RegionOne"
 }
 
 
@@ -47,9 +51,12 @@ resource "openstack_networking_router_v2" "newrouter" {
   name                = "camnet_router"
   admin_state_up      = true
   external_network_id = "${var.external_net_id}"
+#  external_fixed_ip   {
+#    subnet_id = "6701d6fb-9f90-4a13-8ccd-2aee24186943"
+#  }
 }
 
-resource "openstack_networking_router_interface_v2" "canrouter_interface" {
+resource "openstack_networking_router_interface_v2" "camrouter_interface" {
   count     = "${var.network_name == "" ? 1 : 0}"
   depends_on = ["openstack_networking_router_v2.newrouter", "openstack_networking_subnet_v2.newsubnet"]
   router_id = "${element(list("", openstack_networking_router_v2.newrouter.id), 1)}"
