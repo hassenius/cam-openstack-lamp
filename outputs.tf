@@ -5,3 +5,7 @@ locals {
 output "access_ip" {
   value = "${ local.access_ip }"
 }
+
+output "frontend_url" {
+  value = "${format("http://%s", local.access_ip )}"
+}
