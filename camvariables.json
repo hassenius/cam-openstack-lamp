@@ -65,7 +65,7 @@
           "value": "m1.large",
           "label": "m1.large"
         }
-      ]
+      ],
       "default": "m1.small",
       "type": "string",
       "required": true,
